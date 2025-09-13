@@ -1,0 +1,186 @@
+{
+  "components": {
+    "ProductJsonApi": [
+      {
+        "allOf": [
+          {
+            "required": ["options"],
+            "properties": {
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["group", "option", "translated"],
+                  "properties": {
+                    "group": { "type": "string" },
+                    "option": { "type": "string" },
+                    "translated": {
+                      "type": "object",
+                      "properties": {
+                        "group": { "type": "string" },
+                        "option": { "type": "string" }
+                      },
+                      "required": ["group", "option"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "SwagPaypalVaultToken": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "identifier": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "paths": {
+    "/checkout/cart/line-item": {
+      "post": [
+        {
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["items"],
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "required": ["id", "type", "quantity"],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "referencedId": {
+                                "type": "string"
+                              },
+                              "quantity": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "product",
+                                  "custom",
+                                  "credit",
+                                  "discount",
+                                  "container"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "type": "object",
+                            "required": ["referencedId", "type"],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "referencedId": {
+                                "type": "string"
+                              },
+                              "quantity": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string",
+                                "enum": ["promotion"]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "$ref": "_DELETE_"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "patch": [
+        {
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                "$ref": "_DELETE_",
+                "type": "object",
+                "required": ["items"], 
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": { 
+                      "type": "object",
+                      "required": ["id", "quantity"],
+                      "properties": {
+                        "id": { "type": "string" },
+                        "quantity": { "type": "number" }
+                      }
+                    }
+                  }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "/payment-method": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "properties": {
+                      "onlyAvailable": {
+                        "description": "List only available",
+                        "type": "boolean"
+                      }
+                    },
+                    "type": "object"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/role": {
+      "get": {
+        "requestBody": "_DELETE_"
+      }
+    },
+    "/shipping-method": {
+      "post": {
+        "parameters": [
+          {
+            "name": "onlyAvailable",
+            "in": "query",
+            "description": "List only available shipping methods. This filters shipping methods methods which can not be used in the actual context because of their availability rule.",
+            "schema": { "type": "boolean" }
+          }
+        ]
+      }
+    }
+  }
+}

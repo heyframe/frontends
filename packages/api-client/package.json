@@ -1,0 +1,63 @@
+{
+  "name": "@heyframe/api-client",
+  "version": "1.3.0",
+  "description": "HeyFrame client for API connection.",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heyframe/frontends.git"
+  },
+  "keywords": [ "api", "client"],
+  "bugs": {
+    "url": "https://github.com/heyframe/frontends/issues"
+  },
+  "license": "MIT",
+  "module": "./dist/index.mjs",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "api-types", "admin-api-types"],
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
+    },
+    "./api-types": "./api-types/frontApiTypes.d.ts",
+    "./front-api-types": "./api-types/frontApiTypes.d.ts",
+    "./admin-api-types": "./api-types/adminApiTypes.d.ts"
+  },
+  "scripts": {
+    "build": "export NODE_ENV=production && unbuild && pnpm build:types",
+    "build:types": "tsc ./src/*.ts --declaration --allowJs --emitDeclarationOnly --outDir ./temp --skipLibCheck",
+    "dev": "export NODE_ENV=development && unbuild --stub",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --write && pnpm typecheck",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --typecheck",
+    "test:bench": "vitest bench",
+    "test:watch": "vitest --typecheck",
+    "generate-types": "esno ../api-gen/src/cli.ts generate --apiType=front",
+    "generate-admin-types": "esno ../api-gen/src/cli.ts generate --apiType=admin"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@codspeed/vitest-plugin": "4.0.1",
+    "@types/prettier": "3.0.0",
+    "@vitest/coverage-v8": "3.2.4",
+    "jsdom": "26.1.0",
+    "prettier": "3.6.2",
+    "tsconfig": "workspace:*",
+    "unbuild": "2.0.0",
+    "vitest": "3.2.4"
+  },
+  "dependencies": {
+    "defu": "6.1.4",
+    "hookable": "5.5.3",
+    "ofetch": "1.4.1"
+  }
+}

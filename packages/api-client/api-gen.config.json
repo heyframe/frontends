@@ -1,0 +1,5 @@
+{
+  "$schema": "../api-gen/api-gen.schema.json",
+  "rules": ["COMPONENTS_API_ALIAS"],
+  "patches": ["frontApiSchema.overrides.json"]
+}
