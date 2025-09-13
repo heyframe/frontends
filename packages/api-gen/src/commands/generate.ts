@@ -33,13 +33,13 @@ export async function generate(args: {
    */
   cwd: string;
   /**
-   * Filename of the schema to process, default is `storeApiSchema.json` or `adminApiSchema.json` depending on the `apiType` parameter
+   * Filename of the schema to process, default is `frontApiSchema.json` or `adminApiSchema.json` depending on the `apiType` parameter
    */
   filename?: string;
   /**
    * Type of the API to generate types for
    */
-  apiType: "store" | "admin";
+  apiType: "front" | "admin";
   /**
    * Debug mode, display additional information and generates additional files, not needed for the regular usage
    */
@@ -259,7 +259,7 @@ export async function generate(args: {
     } else {
       console.log(
         c.yellow(
-          `File ${c.bold(fullInputFilePath)} does not exist. Using default schema '${args.apiType}' as a base. to change that use param --apiType=admin or --apiType=store to pick the base schema.`,
+          `File ${c.bold(fullInputFilePath)} does not exist. Using default schema '${args.apiType}' as a base. to change that use param --apiType=admin or --apiType=front to pick the base schema.`,
         ),
       );
 
@@ -294,7 +294,7 @@ export async function generate(args: {
       }
 
       // TODO: change overrides file name to param
-      // read file "storeApiTypes.overrides.ts" if exists
+      // read file "frontApiTypes.overrides.ts" if exists
       const overridesFilepath = join(
         args.cwd,
         "api-types",

@@ -5,7 +5,7 @@
     "description": "This endpoint reference contains an overview of all endpoints comprising the Shopware Store API",
     "version": "6.6.0.0"
   },
-  "servers": [{ "url": "https://ks-shirly-66-evolve.swstage.store/store-api" }],
+  "servers": [{ "url": "https://ks-shirly-66-evolve.swstage.front/front-api" }],
   "components": {
     "schemas": {
       "success": {
@@ -10248,7 +10248,7 @@
       },
       "Criteria": {
         "type": "object",
-        "description": "Search parameters. For more information, see our documentation on [Search Queries](https://heyframe.stoplight.io/docs/store-api/docs/concepts/search-queries.md#structure)",
+        "description": "Search parameters. For more information, see our documentation on [Search Queries](https://heyframe.stoplight.io/docs/front-api/docs/concepts/search-queries.md#structure)",
         "properties": {
           "page": { "description": "Search result page", "type": "integer" },
           "limit": {
@@ -10257,7 +10257,7 @@
           },
           "filter": {
             "type": "array",
-            "description": "List of filters to restrict the search result. For more information, see [Search Queries > Filter](https://heyframe.stoplight.io/docs/store-api/docs/concepts/search-queries.md#filter)",
+            "description": "List of filters to restrict the search result. For more information, see [Search Queries > Filter](https://heyframe.stoplight.io/docs/front-api/docs/concepts/search-queries.md#filter)",
             "items": {
               "type": "object",
               "properties": {
@@ -10283,7 +10283,7 @@
           },
           "post-filter": {
             "type": "array",
-            "description": "Filters that applied without affecting aggregations. For more information, see [Search Queries > Post Filter](https://heyframe.stoplight.io/docs/store-api/docs/concepts/search-queries.md#post-filter)",
+            "description": "Filters that applied without affecting aggregations. For more information, see [Search Queries > Post Filter](https://heyframe.stoplight.io/docs/front-api/docs/concepts/search-queries.md#post-filter)",
             "items": {
               "type": "object",
               "properties": {
@@ -10300,7 +10300,7 @@
           },
           "aggregations": {
             "type": "array",
-            "description": "Used to perform aggregations on the search result. For more information, see [Search Queries > Aggregations](https://heyframe.stoplight.io/docs/store-api/docs/concepts/search-queries.md#aggregations)",
+            "description": "Used to perform aggregations on the search result. For more information, see [Search Queries > Aggregations](https://heyframe.stoplight.io/docs/front-api/docs/concepts/search-queries.md#aggregations)",
             "items": {
               "type": "object",
               "properties": {
@@ -10966,7 +10966,7 @@
         "properties": {
           "apiAlias": {
             "type": "string",
-            "description": "Alias which can be used to restrict response fields. For more information see [includes](https://heyframe.stoplight.io/docs/store-api/docs/concepts/search-queries.md#includes-apialias)."
+            "description": "Alias which can be used to restrict response fields. For more information see [includes](https://heyframe.stoplight.io/docs/front-api/docs/concepts/search-queries.md#includes-apialias)."
           }
         }
       },
@@ -11716,7 +11716,7 @@
                   "firstName",
                   "lastName",
                   "acceptedDataProtection",
-                  "storefrontUrl",
+                  "frontfrontUrl",
                   "billingAddress"
                 ],
                 "properties": {
@@ -11744,8 +11744,8 @@
                     "description": "Flag indicating accepted data protection",
                     "type": "boolean"
                   },
-                  "storefrontUrl": {
-                    "description": "URL of the storefront for that registration. Used in confirmation emails. Has to be one of the configured domains of the sales channel.",
+                  "frontfrontUrl": {
+                    "description": "URL of the frontfront for that registration. Used in confirmation emails. Has to be one of the configured domains of the sales channel.",
                     "type": "string"
                   },
                   "billingAddress": {
@@ -11781,11 +11781,11 @@
                     "type": "string"
                   },
                   "affiliateCode": {
-                    "description": "Field can be used to store an affiliate tracking code",
+                    "description": "Field can be used to front an affiliate tracking code",
                     "type": "string"
                   },
                   "campaignCode": {
-                    "description": "Field can be used to store a campaign tracking code",
+                    "description": "Field can be used to front a campaign tracking code",
                     "type": "string"
                   }
                 },
@@ -11862,14 +11862,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": ["email", "storefrontUrl"],
+                "required": ["email", "frontfrontUrl"],
                 "properties": {
                   "email": {
                     "description": "E-Mail address to identify the customer",
                     "type": "string"
                   },
-                  "storefrontUrl": {
-                    "description": "URL of the storefront to use for the generated reset link. It has to be a domain that is configured in the sales channel domain settings.",
+                  "frontfrontUrl": {
+                    "description": "URL of the frontfront to use for the generated reset link. It has to be a domain that is configured in the sales channel domain settings.",
                     "type": "string"
                   }
                 },
@@ -12122,7 +12122,7 @@
       "post": {
         "tags": ["Cart"],
         "summary": "Add items to the cart",
-        "description": "This route adds items to the cart. An item can be a product or promotion for example. They are referenced by the `referencedId`-parameter.\n\nExample: [Working with the cart - Guide](https://developer.heyframe.com/docs/guides/integrations-api/store-api-guide/work-with-the-cart#adding-new-items-to-the-cart)",
+        "description": "This route adds items to the cart. An item can be a product or promotion for example. They are referenced by the `referencedId`-parameter.\n\nExample: [Working with the cart - Guide](https://developer.heyframe.com/docs/guides/integrations-api/front-api-guide/work-with-the-cart#adding-new-items-to-the-cart)",
         "operationId": "addLineItem",
         "requestBody": {
           "content": {
@@ -12146,7 +12146,7 @@
       "delete": {
         "tags": ["Cart"],
         "summary": "Remove items from the cart",
-        "description": "DEPRECATED: use removeLineItem instead. This route removes items from the cart and recalculates it.\n\nExample: [Working with the cart - Guide](https://developer.heyframe.com/docs/guides/integrations-api/store-api-guide/work-with-the-cart#deleting-items-in-the-cart)",
+        "description": "DEPRECATED: use removeLineItem instead. This route removes items from the cart and recalculates it.\n\nExample: [Working with the cart - Guide](https://developer.heyframe.com/docs/guides/integrations-api/front-api-guide/work-with-the-cart#deleting-items-in-the-cart)",
         "operationId": "removeLineItemDeprecated",
         "deprecated": true,
         "parameters": [
@@ -12176,7 +12176,7 @@
       "patch": {
         "tags": ["Cart"],
         "summary": "Update items in the cart",
-        "description": "This route updates items in the cart. A typical example is updating the quantity of an item.\n\nExample: [Working with the cart - Guide](https://developer.heyframe.com/docs/guides/integrations-api/store-api-guide/work-with-the-cart#updating-items-in-the-cart)",
+        "description": "This route updates items in the cart. A typical example is updating the quantity of an item.\n\nExample: [Working with the cart - Guide](https://developer.heyframe.com/docs/guides/integrations-api/front-api-guide/work-with-the-cart#updating-items-in-the-cart)",
         "operationId": "updateLineItem",
         "requestBody": {
           "content": {
@@ -12202,7 +12202,7 @@
       "post": {
         "tags": ["Cart"],
         "summary": "Remove items from the cart",
-        "description": "This route removes items from the cart and recalculates it.\n\nExample: [Working with the cart - Guide](https://developer.heyframe.com/docs/guides/integrations-api/store-api-guide/work-with-the-cart#deleting-items-in-the-cart)",
+        "description": "This route removes items from the cart and recalculates it.\n\nExample: [Working with the cart - Guide](https://developer.heyframe.com/docs/guides/integrations-api/front-api-guide/work-with-the-cart#deleting-items-in-the-cart)",
         "operationId": "removeLineItem",
         "requestBody": {
           "required": true,
@@ -12243,7 +12243,7 @@
         "description": "Creates a new order from the current cart and deletes the cart.\n\nIf you are using the [prepared payment flow](https://developer.heyframe.com/docs/concepts/commerce/checkout-concept/payments#2.1-prepare-payment-optional), this endpoint also receives additional transaction details. The exact name of the parameters depends on the implementation of the corresponding *payment handler*.",
         "operationId": "createOrder",
         "requestBody": {
-          "description": "Contains additional metadata which is stored together with the order. It can also contain payment transaction details.",
+          "description": "Contains additional metadata which is frontd together with the order. It can also contain payment transaction details.",
           "content": {
             "application/json": {
               "schema": {
@@ -13068,7 +13068,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": ["email", "option", "storefrontUrl"],
+                "required": ["email", "option", "frontfrontUrl"],
                 "properties": {
                   "email": {
                     "description": "Email address that will receive the confirmation and the newsletter.",
@@ -13078,8 +13078,8 @@
                     "description": "Defines what should be done.",
                     "type": "string"
                   },
-                  "storefrontUrl": {
-                    "description": "Url of the storefront of the shop. This will be used for generating the link to the /newsletter/confirm inside the confirm email.",
+                  "frontfrontUrl": {
+                    "description": "Url of the frontfront of the shop. This will be used for generating the link to the /newsletter/confirm inside the confirm email.",
                     "type": "string"
                   },
                   "salutationId": {
@@ -14067,7 +14067,7 @@
         }
       }
     },
-    "/store-api/employee/create": {
+    "/front-api/employee/create": {
       "post": {
         "tags": ["B2B"],
         "summary": "Create a single employee and returns the employee",
@@ -14115,7 +14115,7 @@
         "security": [{ "ApiKey": [] }]
       }
     },
-    "/store-api/employee": {
+    "/front-api/employee": {
       "post": {
         "tags": ["B2B"],
         "summary": "Fetch a list of employees",
@@ -14161,7 +14161,7 @@
         "security": [{ "ApiKey": [] }]
       }
     },
-    "/store-api/employee/{id}": {
+    "/front-api/employee/{id}": {
       "post": {
         "tags": ["B2B"],
         "summary": "Fetch a one employee by id",
@@ -14260,7 +14260,7 @@
         "security": [{ "ApiKey": [] }]
       }
     },
-    "/store-api/employee/reinvite/{id}": {
+    "/front-api/employee/reinvite/{id}": {
       "post": {
         "tags": ["B2B"],
         "summary": "Reinvite employee by id",
@@ -14281,8 +14281,8 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "storefrontUrl": {
-                    "description": "URL of the storefront domain",
+                  "frontfrontUrl": {
+                    "description": "URL of the frontfront domain",
                     "type": "string"
                   }
                 },
@@ -14304,7 +14304,7 @@
         "security": [{ "ApiKey": [] }]
       }
     },
-    "/store-api/role/create": {
+    "/front-api/role/create": {
       "post": {
         "tags": ["B2B"],
         "summary": "Create a single role and returns the role",
@@ -14349,7 +14349,7 @@
         "security": [{ "ApiKey": [] }]
       }
     },
-    "/store-api/role": {
+    "/front-api/role": {
       "get": {
         "tags": ["B2B"],
         "summary": "Fetch a list of roles",
@@ -14439,7 +14439,7 @@
         "security": [{ "ApiKey": [] }]
       }
     },
-    "/store-api/role/{id}": {
+    "/front-api/role/{id}": {
       "get": {
         "tags": ["B2B"],
         "summary": "Fetch a one role by id",
@@ -14535,7 +14535,7 @@
         "security": [{ "ApiKey": [] }]
       }
     },
-    "/store-api/role/permissions": {
+    "/front-api/role/permissions": {
       "get": {
         "tags": ["B2B"],
         "summary": "Fetch a available permissions",
@@ -14578,7 +14578,7 @@
         "security": [{ "ApiKey": [] }]
       }
     },
-    "/store-api/role/default": {
+    "/front-api/role/default": {
       "post": {
         "tags": ["B2B"],
         "summary": "Sets the default role Id for new employees",
@@ -14604,7 +14604,7 @@
         "security": [{ "ApiKey": [] }]
       }
     },
-    "/store-api/sso/auth/{providerId}": {
+    "/front-api/sso/auth/{providerId}": {
       "post": {
         "tags": ["Sso"],
         "summary": "Authenticates via SSO",
@@ -14632,7 +14632,7 @@
         "security": [{ "ApiKey": [] }]
       }
     },
-    "/store-api/sso/redirect/{providerId}": {
+    "/front-api/sso/redirect/{providerId}": {
       "post": {
         "tags": ["Sso"],
         "summary": "Redirects after authentication",
@@ -14660,7 +14660,7 @@
         "security": [{ "ApiKey": [] }]
       }
     },
-    "/store-api/product/natural-language/search-term": {
+    "/front-api/product/natural-language/search-term": {
       "post": {
         "tags": ["Natural language search", "AI Search", "Experimental"],
         "summary": "Fetch search terms by natural language search query",
@@ -14697,7 +14697,7 @@
         }
       }
     },
-    "/store-api/product/image-upload-search/search-term": {
+    "/front-api/product/image-upload-search/search-term": {
       "post": {
         "tags": ["Search by Image", "AI Search", "Experimental"],
         "summary": "Fetch product search terms by uploading an image.",

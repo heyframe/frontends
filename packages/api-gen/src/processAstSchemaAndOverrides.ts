@@ -12,7 +12,7 @@ import { createVirtualFiles } from "./virtualFileCreator";
 export async function processAstSchemaAndOverrides(
   [opMap, opComponents, opExistingTypes, opParameters]: TransformedElements,
   overridingSchema: string,
-  type: "store" | "admin",
+  type: "front" | "admin",
   options: { version: string },
 ) {
   const {

@@ -3,7 +3,7 @@ import type { operations as adminOperations } from "@heyframe/api-client/admin-a
 import type { operations } from "@heyframe/api-client/api-types";
 
 let adminApiClient: ReturnType<typeof createAdminAPIClient<adminOperations>>;
-let storeApiClient: ReturnType<typeof createAPIClient<operations>>;
+let frontApiClient: ReturnType<typeof createAPIClient<operations>>;
 
 export function getAdminApiClient() {
   if (!adminApiClient) {
@@ -13,8 +13,8 @@ export function getAdminApiClient() {
         grant_type: "password",
         client_id: "administration",
         scopes: "write",
-        username: process.env.SHOPWARE_ADMIN_USERNAME || "",
-        password: process.env.SHOPWARE_ADMIN_PASSWORD || "",
+        username: process.env.HEYFRAME_ADMIN_USERNAME || "",
+        password: process.env.HEYFRAME_ADMIN_PASSWORD || "",
       },
     });
   }
@@ -22,11 +22,11 @@ export function getAdminApiClient() {
 }
 
 export function getStoreApiClient() {
-  if (!storeApiClient) {
-    storeApiClient = createAPIClient<operations>({
-      baseURL: `${process.env.OPENAPI_JSON_URL}/store-api`,
+  if (!frontApiClient) {
+    frontApiClient = createAPIClient<operations>({
+      baseURL: `${process.env.OPENAPI_JSON_URL}/front-api`,
       accessToken: process.env.OPENAPI_ACCESS_KEY,
     });
   }
-  return storeApiClient;
+  return frontApiClient;
 }

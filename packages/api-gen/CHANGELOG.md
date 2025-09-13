@@ -25,7 +25,7 @@
 
 ### Minor Changes
 
-- [#1706](https://github.com/heyframe/frontends/pull/1706) [`d7bf6d7`](https://github.com/heyframe/frontends/commit/d7bf6d715689f5d0cbef9f0bbbc78f19f54215d5) Thanks [@patzick](https://github.com/patzick)! - Simplify `api-gen.config.json` configuration. Now you can use names instead of paths in patches like `storeApiSchema.overrides.json` or `storeApiSchema.b2b.overrides.json`.
+- [#1706](https://github.com/heyframe/frontends/pull/1706) [`d7bf6d7`](https://github.com/heyframe/frontends/commit/d7bf6d715689f5d0cbef9f0bbbc78f19f54215d5) Thanks [@patzick](https://github.com/patzick)! - Simplify `api-gen.config.json` configuration. Now you can use names instead of paths in patches like `frontApiSchema.overrides.json` or `frontApiSchema.b2b.overrides.json`.
   Thanks to this you can simple and more granularly apply patches for your project.
 
 ## 1.2.1
@@ -83,7 +83,7 @@
   tun it in the console like this:
 
   ```bash
-  heyframe-api-gen validateJson --apiType=store
+  heyframe-api-gen validateJson --apiType=front
 
   heyframe-api-gen validateJson --apiType=admin
   ```
@@ -165,13 +165,13 @@
 
 - [#534](https://github.com/heyframe/frontends/pull/534) [`6170dca`](https://github.com/heyframe/frontends/commit/6170dca220f4b33c4dcb6fd1c3172ad931a47c75) Thanks [@patzick](https://github.com/patzick)! - Command `generate` has been splitted and doing only transformation from json to d.ts file
 
-- [#564](https://github.com/heyframe/frontends/pull/564) [`93a6048`](https://github.com/heyframe/frontends/commit/93a6048ee28c1975750ef6911f303ea095cb9941) Thanks [@patzick](https://github.com/patzick)! - Added `apiType` option in `loadSchema` command. With `SHOPWARE_ADMIN_USERNAME` and `SHOPWARE_ADMIN_PASSWORD` env variables we can now authorize Admin API schema.
+- [#564](https://github.com/heyframe/frontends/pull/564) [`93a6048`](https://github.com/heyframe/frontends/commit/93a6048ee28c1975750ef6911f303ea095cb9941) Thanks [@patzick](https://github.com/patzick)! - Added `apiType` option in `loadSchema` command. With `HEYFRAME_ADMIN_USERNAME` and `HEYFRAME_ADMIN_PASSWORD` env variables we can now authorize Admin API schema.
 
   example:
 
   ```bash
-  # load schema from store API
-  pnpx @heyframe/api-gen loadSchema --apiType=store --filename=storeApiSchema.json
+  # load schema from front API
+  pnpx @heyframe/api-gen loadSchema --apiType=front --filename=frontApiSchema.json
 
   # load schema from admin API
   pnpx @heyframe/api-gen loadSchema --apiType=admin --filename=adminApiSchema.json

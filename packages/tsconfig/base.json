@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
+  "$schema": "https://json.schemafront.org/tsconfig",
   "display": "Default",
   "compilerOptions": {
     "composite": false,

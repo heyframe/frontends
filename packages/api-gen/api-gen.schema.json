@@ -12,11 +12,11 @@
           "format": "file-path"
         },
         {
-          "const": "storeApiSchema.overrides.json",
+          "const": "frontApiSchema.overrides.json",
           "description": "Clean core Store API Schema patches"
         },
         {
-          "const": "storeApiSchema.b2b.overrides.json",
+          "const": "frontApiSchema.b2b.overrides.json",
           "description": "B2B module patches"
         },
         {

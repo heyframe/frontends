@@ -28,7 +28,7 @@ describe.skip("api-gen - generate", () => {
     await generate({
       cwd: __dirname,
       filename: "testSchema.json",
-      apiType: "store",
+      apiType: "front",
       debug: false,
       logPatches: false,
     });

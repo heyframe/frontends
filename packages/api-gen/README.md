@@ -35,13 +35,13 @@ deno install --dev @heyframe/api-gen
 
 ## Features
 
-Generator will create a new directory `api-types` with TypeScript schemas inside. Depending on the `apiType` parameter it will create `storeApiTypes.ts` or `adminApiTypes.ts` file.
+Generator will create a new directory `api-types` with TypeScript schemas inside. Depending on the `apiType` parameter it will create `frontApiTypes.ts` or `adminApiTypes.ts` file.
 
 ### Overriding
 
 If your instance contains inacurate or outdated OpenAPI specification, you can override it by creating a new file inside `api-types` directory::
 
-- `storeApiTypes.overrides.ts` for store API
+- `frontApiTypes.overrides.ts` for front API
 - `adminApiTypes.overrides.ts` for admin API
 
 Example of overrides file:
@@ -49,7 +49,7 @@ Example of overrides file:
 <!-- automd:file src="packages/api-gen/tests/snapshots-override/simpleOverride.example.ts" code -->
 
 ```ts [simpleOverride.example.ts]
-import type { components as mainComponents } from "./storeApiTypes";
+import type { components as mainComponents } from "./frontApiTypes";
 
 export type components = mainComponents & {
   schemas: Schemas;
@@ -111,7 +111,7 @@ Example:
 ```json
 {
   "$schema": "https://raw.githubusercontent.com/heyframe/frontends/main/packages/api-gen/api-gen.schema.json",
-  "patches": ["storeApiTypes.overrides.json"]
+  "patches": ["frontApiTypes.overrides.json"]
 }
 ```
 
@@ -121,13 +121,13 @@ or you could use multiple patches and add your own overrides on top:
 {
   "$schema": "https://raw.githubusercontent.com/heyframe/frontends/main/packages/api-gen/api-gen.schema.json",
   "patches": [
-    "https://raw.githubusercontent.com/heyframe/frontends/refs/heads/main/packages/api-client/api-types/storeApiSchema.overrides.json",
+    "https://raw.githubusercontent.com/heyframe/frontends/refs/heads/main/packages/api-client/api-types/frontApiSchema.overrides.json",
     "./api-types/myOwnPatches.overrides.json"
   ]
 }
 ```
 
-and then inside the `storeApiTypes.overrides.json` file you can add your patches:
+and then inside the `frontApiTypes.overrides.json` file you can add your patches:
 
 ```json
 {
@@ -159,7 +159,7 @@ you apply this as 2 independent patches, or combine it as a single patch without
 Creating multiple patches is useful when you want to apply different changes to the same object, which can also be corrected on the backend side independently. This way specific patches are becoming outdated and you get the notification that you can remove them safely.
 
 > [!NOTE]  
-> Check our current default patches to see more examples: [source](https://raw.githubusercontent.com/heyframe/frontends/main/packages/api-client/api-types/storeApiSchema.overrides.json).
+> Check our current default patches to see more examples: [source](https://raw.githubusercontent.com/heyframe/frontends/main/packages/api-client/api-types/frontApiSchema.overrides.json).
 
 ## Commands
 
@@ -168,7 +168,7 @@ Creating multiple patches is useful when you want to apply different changes to 
 ```json
 {
   "scripts": {
-    "generate-types": "heyframe-api-gen generate --apiType=store"
+    "generate-types": "heyframe-api-gen generate --apiType=front"
   }
 }
 ```
@@ -184,8 +184,8 @@ options:
 ```bash
 pnpx @heyframe/api-gen generate --help
 
-# generate schemas from store API
-pnpx @heyframe/api-gen generate --apiType=store
+# generate schemas from front API
+pnpx @heyframe/api-gen generate --apiType=front
 
 # generate schemas from admin API
 pnpx @heyframe/api-gen generate --apiType=admin
@@ -205,8 +205,8 @@ options:
 ```bash
 pnpx @heyframe/api-gen loadSchema --help
 
-# load schema from store API
-pnpx @heyframe/api-gen loadSchema --apiType=store
+# load schema from front API
+pnpx @heyframe/api-gen loadSchema --apiType=front
 
 # load schema from admin API
 pnpx @heyframe/api-gen loadSchema --apiType=admin
@@ -220,12 +220,12 @@ flags:
 Remember to add `.env` file in order to authenticate with Shopware instance.
 
 ```bash
-OPENAPI_JSON_URL="https://your-shop-instance.heyframe.store"
-## This one needed to fetch store API schema
+OPENAPI_JSON_URL="https://your-shop-instance.heyframe.front"
+## This one needed to fetch front API schema
 OPENAPI_ACCESS_KEY="YOUR_STORE_API_ACCESS_KEY"
 ## These two needed to fetch admin API schema
-SHOPWARE_ADMIN_USERNAME="my@username.com"
-SHOPWARE_ADMIN_PASSWORD="my-password"
+HEYFRAME_ADMIN_USERNAME="my@username.com"
+HEYFRAME_ADMIN_PASSWORD="my-password"
 ```
 
 ### `validateJson`
@@ -238,10 +238,10 @@ options:
 pnpx @heyframe/api-gen validateJson --help
 
 # validate JSON file
-pnpx @heyframe/api-gen validateJson --apiType=store
+pnpx @heyframe/api-gen validateJson --apiType=front
 ```
 
-this searches for `api-types/storeApiTypes.json` file and validates it. Use [loadSchema](#loadSchema) command first to fetch your JSON file.
+this searches for `api-types/frontApiTypes.json` file and validates it. Use [loadSchema](#loadSchema) command first to fetch your JSON file.
 
 Prepare your config file named **api-gen.config.json**:
 
@@ -251,7 +251,7 @@ Prepare your config file named **api-gen.config.json**:
   "rules": [
     "COMPONENTS_API_ALIAS" // you have description on autocompletion what specific rule does, this one for example ensures correctness of the apiAlias field
   ],
-  //"patches": "storeApiTypes.overrides.json" // -> path to your overrides file in api-types folder, default is fetched from api-client repository
+  //"patches": "frontApiTypes.overrides.json" // -> path to your overrides file in api-types folder, default is fetched from api-client repository
 }
 ```
 
@@ -266,8 +266,8 @@ import { generate } from "@heyframe/api-gen";
 
 await generate({ 
   cwd: process.cwd(),
-  filename: "storeApiTypes.ts",
-  apiType: "store",
+  filename: "frontApiTypes.ts",
+  apiType: "front",
   debug: true,
   logPatches: true,
 });
@@ -280,8 +280,8 @@ import { loadSchema } from "@heyframe/api-gen";
 
 await loadSchema({
   cwd: process.cwd(),
-  filename: "storeApiTypes.json",
-  apiType: "store",
+  filename: "frontApiTypes.json",
+  apiType: "front",
 });
 ```
 
@@ -292,8 +292,8 @@ import { validateJson } from "@heyframe/api-gen";
 
 await validateJson({
   cwd: process.cwd(),
-  filename: "storeApiTypes.json",
-  apiType: "store",
+  filename: "frontApiTypes.json",
+  apiType: "front",
   logPatches: true,
   debug: true,
 });

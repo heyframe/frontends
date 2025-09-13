@@ -18,7 +18,7 @@ import { validationRules } from "../validation-rules";
  */
 function cleanupEndpointString(endpoint: string) {
   const path1 = endpoint
-    .replace(/\/(api|store-api)\//, "/")
+    .replace(/\/(api|front-api)\//, "/")
     // also replace all names betwern {} with empty brackets> example /some-endpoint/{id} -> /some-endpoint/{}
     .replace(/\{.*?\}/g, "{}")
     .trim();
@@ -52,13 +52,13 @@ export async function validateJson(args: {
    */
   cwd: string;
   /**
-   * Filename of the schema to process, default is `storeApiSchema.json` or `adminApiSchema.json` depending on the `apiType` parameter
+   * Filename of the schema to process, default is `frontApiSchema.json` or `adminApiSchema.json` depending on the `apiType` parameter
    */
   filename?: string;
   /**
    * Type of the API to validate
    */
-  apiType: "store" | "admin";
+  apiType: "front" | "admin";
   /**
    * Log patches, display information about applied patches while generating types
    */

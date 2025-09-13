@@ -32,12 +32,12 @@ yargs(hideBin(process.argv))
         .positional("filename", {
           type: "string",
           describe:
-            "name of the file to generate type from. The default (based on apiType parameter) is 'storeApiSchema.json' or 'adminApiSchema.json'",
+            "name of the file to generate type from. The default (based on apiType parameter) is 'frontApiSchema.json' or 'adminApiSchema.json'",
         })
         .option("apiType", {
-          choices: ["store", "admin"] as const,
+          choices: ["front", "admin"] as const,
           demandOption: true,
-          describe: "type of the generated API. Values: store, admin",
+          describe: "type of the generated API. Values: front, admin",
         })
         .positional("debug", {
           type: "boolean",
@@ -60,14 +60,14 @@ yargs(hideBin(process.argv))
       return commonOptions(args)
         .option("apiType", {
           describe:
-            "Type of the API schema to load. It can be 'store' or 'admin'",
+            "Type of the API schema to load. It can be 'front' or 'admin'",
           demandOption: true,
-          choices: ["store", "admin"] as const,
+          choices: ["front", "admin"] as const,
         })
         .positional("filename", {
           type: "string",
           describe:
-            "name of the file to save schema. The default (based on apiType parameter) is 'storeApiSchema.json' or 'adminApiSchema.json'",
+            "name of the file to save schema. The default (based on apiType parameter) is 'frontApiSchema.json' or 'adminApiSchema.json'",
         })
         .help();
     },
@@ -80,14 +80,14 @@ yargs(hideBin(process.argv))
       return commonOptions(args)
         .option("apiType", {
           describe:
-            "Type of the API schema to load. It can be 'store' or 'admin'",
+            "Type of the API schema to load. It can be 'front' or 'admin'",
           demandOption: true,
-          choices: ["store", "admin"] as const,
+          choices: ["front", "admin"] as const,
         })
         .positional("filename", {
           type: "string",
           describe:
-            "name of the schema json file. The default (based on apiType parameter) is 'storeApiSchema.json' or 'adminApiSchema.json'",
+            "name of the schema json file. The default (based on apiType parameter) is 'frontApiSchema.json' or 'adminApiSchema.json'",
         })
         .option("logPatches", {
           type: "boolean",
