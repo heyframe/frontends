@@ -9,6 +9,5 @@
   "linked": [],
   "access": "public",
   "baseBranch": "main",
-  "updateInternalDependencies": "patch",
-  "ignore": ["e2e-tests", "example-*"]
+  "updateInternalDependencies": "patch"
 }
