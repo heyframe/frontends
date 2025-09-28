@@ -285,7 +285,7 @@ export async function prepareFileContent({
 * This file is auto-generated. Do not make direct changes to the file.
 * Instead override it in your heyframe.d.ts file.
 *
-* Shopware API version: ${options.version}
+* HeyFrame API version: ${options.version}
 *
 */
   `;

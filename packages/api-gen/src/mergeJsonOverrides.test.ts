@@ -5,7 +5,7 @@ import type { OverridesSchema } from "./patchJsonSchema";
 describe("mergeJsonOverrides", () => {
   it("should merge both object types", () => {
     const jsonObjects = [
-      // api-types/frontApiTypes1.overrides.json
+      // api-types/storeApiTypes1.overrides.json
       {
         components: {
           Product: {
@@ -13,7 +13,7 @@ describe("mergeJsonOverrides", () => {
           },
         },
       },
-      // api-types/frontApiTypes2.overrides.json
+      // api-types/storeApiTypes2.overrides.json
       {
         components: {
           Product: {
@@ -32,7 +32,7 @@ describe("mergeJsonOverrides", () => {
 
   it("should merge both array types", () => {
     const jsonObjects = [
-      // api-types/frontApiTypes1.overrides.json
+      // api-types/storeApiTypes1.overrides.json
       {
         components: {
           Product: [
@@ -42,7 +42,7 @@ describe("mergeJsonOverrides", () => {
           ],
         },
       },
-      // api-types/frontApiTypes2.overrides.json
+      // api-types/storeApiTypes2.overrides.json
       {
         components: {
           Product: [
@@ -65,7 +65,7 @@ describe("mergeJsonOverrides", () => {
 
   it("should merge object and array types", () => {
     const jsonObjects = [
-      // api-types/frontApiTypes1.overrides.json
+      // api-types/storeApiTypes1.overrides.json
       {
         components: {
           Product: {
@@ -73,7 +73,7 @@ describe("mergeJsonOverrides", () => {
           },
         },
       },
-      // api-types/frontApiTypes2.overrides.json
+      // api-types/storeApiTypes2.overrides.json
       {
         components: {
           Product: [
@@ -96,7 +96,7 @@ describe("mergeJsonOverrides", () => {
 
   it("should merge array and object type", () => {
     const jsonObjects = [
-      // api-types/frontApiTypes1.overrides.json
+      // api-types/storeApiTypes1.overrides.json
       {
         components: {
           Product: [
@@ -106,7 +106,7 @@ describe("mergeJsonOverrides", () => {
           ],
         },
       },
-      // api-types/frontApiTypes2.overrides.json
+      // api-types/storeApiTypes2.overrides.json
       {
         components: {
           Product: {

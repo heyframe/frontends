@@ -15,7 +15,7 @@ describe("transformOpenApiTypes", async () => {
       readSalutation: {
         parameters: {
           header?: {
-            /** Instructs Shopware to return the response in the given language. */
+            /** Instructs HeyFrame to return the response in the given language. */
             "sw-language-id"?: string;
           };
         };

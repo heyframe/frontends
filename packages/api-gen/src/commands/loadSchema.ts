@@ -8,20 +8,20 @@ import { format } from "prettier";
 import { getAdminApiClient, getStoreApiClient } from "../apiClient";
 
 const SCHEMA_ENDPOINT = "_info/openapi3.json";
-const STORE_API_ENDPOINT = `/front-api/${SCHEMA_ENDPOINT}`;
+const STORE_API_ENDPOINT = `/store-api/${SCHEMA_ENDPOINT}`;
 const ADMIN_API_ENDPOINT = `/api/${SCHEMA_ENDPOINT}`;
 
 /**
  * Load JSON schema from your API instance. You need to have proper .env file with the following values:
  *
- * For `front` API:
+ * For `store` API:
  * - OPENAPI_JSON_URL
  * - OPENAPI_ACCESS_KEY
  *
  * For `admin` API:
  * - OPENAPI_JSON_URL
- * - HEYFRAME_ADMIN_USERNAME
- * - HEYFRAME_ADMIN_PASSWORD
+ * - SHOPWARE_ADMIN_USERNAME
+ * - SHOPWARE_ADMIN_PASSWORD
  *
  */
 export async function loadSchema(args: {
@@ -30,17 +30,17 @@ export async function loadSchema(args: {
    */
   cwd: string;
   /**
-   * Filename to save the downloaded schema, default is `frontApiSchema.json` or `adminApiSchema.json` depending on the `apiType` parameter
+   * Filename to save the downloaded schema, default is `storeApiSchema.json` or `adminApiSchema.json` depending on the `apiType` parameter
    */
   filename?: string;
   /**
    * Type of the API to generate types for
    */
-  apiType: "front" | "admin";
+  apiType: "store" | "admin";
 }) {
-  if (!["front", "admin"].includes(args.apiType)) {
+  if (!["store", "admin"].includes(args.apiType)) {
     console.error(
-      c.red(`Invalid "apiType" argument. It should be "front" or "admin"`),
+      c.red(`Invalid "apiType" argument. It should be "store" or "admin"`),
     );
     process.exit(1);
   }
@@ -53,8 +53,8 @@ export async function loadSchema(args: {
   const OPENAPI_JSON_URL = process.env.OPENAPI_JSON_URL;
   const requiredEnvVars = [];
   if (isAdminApi) {
-    requiredEnvVars.push("HEYFRAME_ADMIN_USERNAME");
-    requiredEnvVars.push("HEYFRAME_ADMIN_PASSWORD");
+    requiredEnvVars.push("SHOPWARE_ADMIN_USERNAME");
+    requiredEnvVars.push("SHOPWARE_ADMIN_PASSWORD");
   } else {
     requiredEnvVars.push("OPENAPI_ACCESS_KEY");
   }
@@ -77,7 +77,7 @@ export async function loadSchema(args: {
     const configUrl = OPENAPI_JSON_URL.replace(
       "/api/_info/openapi3.json",
       "",
-    ).replace("/front-api/_info/openapi3.json", "");
+    ).replace("/store-api/_info/openapi3.json", "");
 
     const downloadUrl =
       configUrl + (isAdminApi ? ADMIN_API_ENDPOINT : STORE_API_ENDPOINT);
